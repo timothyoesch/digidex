@@ -1,0 +1,60 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
+
+class User extends Authenticatable implements MustVerifyEmail
+{
+    use HasApiTokens, HasFactory, Notifiable;
+
+    /**
+     * Boot the model and check against allowed domains.
+     */
+    public static function boot() {
+        parent::boot();
+        static::creating(function ($user) {
+            if (env("ALLOWED_DOMAINS", null)) {
+                $addlowedDomains = explode(",", env("ALLOWED_DOMAINS"));
+                $domain = explode("@", $user->email)[1];
+                if (!in_array($domain, $addlowedDomains) && !in_array("*", $addlowedDomains) && !in_array("all", $addlowedDomains) && $domain != "localhost") {
+                    abort(403,"Domain not allowed");
+                }
+            }
+        });
+    }
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+    ];
+
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
+    ];
+}
