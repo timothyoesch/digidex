@@ -1,0 +1,42 @@
+.ddx-table {
+    @apply relative overflow-x-auto shadow-md sm:rounded-lg;
+
+    table {
+        @apply w-full text-sm text-left text-gray-500;
+
+        thead {
+            @apply text-xs text-gray-700 uppercase bg-indigo-50;
+
+            th[scope="col"] {
+                @apply px-6 py-3 font-semibold tracking-wider;
+            }
+
+        }
+
+        tbody {
+            tr {
+                @apply border-b border-gray-200;
+
+                &.even {
+                    @apply bg-gray-50;
+                }
+
+                &.odd {
+                    @apply bg-white;
+                }
+            }
+
+            th[scope="row"] {
+                @apply px-6 py-4 font-semibold tracking-wider text-indigo-700 whitespace-nowrap;
+            }
+
+            td {
+                @apply px-6 py-4;
+
+                a {
+                    @apply font-medium text-indigo-700 hover:underline
+                }
+            }
+        }
+    }
+}

@@ -21,7 +21,7 @@ class User extends Authenticatable implements MustVerifyEmail
             if (env("ALLOWED_DOMAINS", null)) {
                 $addlowedDomains = explode(",", env("ALLOWED_DOMAINS"));
                 $domain = explode("@", $user->email)[1];
-                if (!in_array($domain, $addlowedDomains) && !in_array("*", $addlowedDomains) && !in_array("all", $addlowedDomains) && $domain != "localhost") {
+                if (!in_array($domain, $addlowedDomains)) {
                     abort(403,"Domain not allowed");
                 }
             }

@@ -6,7 +6,7 @@
 
 
 # Potential Roadmap
-- [ ] Add User infrastructure
+- [x] Add User infrastructure
 - [ ] Card setup
   - [ ] Types (Contact, Topic)
   - [ ] Contact fields
