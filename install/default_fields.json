@@ -1,0 +1,44 @@
+[
+    {
+        "name": "First name",
+        "fieldtype": "text"
+    },
+    {
+        "name": "Last name",
+        "fieldtype": "text"
+    },
+    {
+        "name": "Email",
+        "fieldtype": "email",
+        "labelable": true,
+        "multiple": true
+    },
+    {
+        "name": "Phone",
+        "fieldtype": "text",
+        "labelable": true,
+        "multiple": true
+    },
+    {
+        "name": "Address",
+        "fieldtype": "textarea",
+        "labelable": true,
+        "multiple": true
+    },
+    {
+        "name": "Company",
+        "fieldtype": "text"
+    },
+    {
+        "name": "Job title",
+        "fieldtype": "text"
+    },
+    {
+        "name": "Website",
+        "fieldtype": "text"
+    },
+    {
+        "name": "Birthday",
+        "fieldtype": "date"
+    }
+]

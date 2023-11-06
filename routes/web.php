@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,13 +20,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix("admin")->group(function () {
+Route::prefix("admin")->middleware(['auth', 'verified'])->group(function () {
     Route::get('/', function () {
         return view('dashboard');
     })->name('dashboard');
 
     Route::resource('users', UserController::class)->except("show")->name('*', 'users');
-})->middleware(['auth', 'verified']);
+
+    Route::get('/settings', function () {
+        return view('settings');
+    })->name('settings');
+
+    Route::resource("cards", CardController::class)->name('*', 'card')->parameters([
+        'cards' => 'card:uuid'
+    ]);
+
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -5,13 +5,17 @@ $routes = [
         "route" => "dashboard",
     ],
     [
+        "name" => "Cards",
+        "route" => "cards.index",
+    ],
+    [
         "name" => "Users",
         "route" => "users.index",
     ],
-    // [
-    //     "name" => "Settings",
-    //     "route" => "settings",
-    // ]
+    [
+        "name" => "Settings",
+        "route" => "settings",
+    ]
 ]
 ?>
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
